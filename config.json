@@ -1,0 +1,5 @@
+// chỉnh admin id tại phần .env phần config này sẽ lưu adminid mới được thêm và các group bot đang ở
+{
+  "admins": ["your_admin_id_here"],
+  "groups": {}
+}
