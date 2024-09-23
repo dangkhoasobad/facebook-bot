@@ -29,6 +29,14 @@ function startBot(api) {
   api.listenMqtt((err, event) => {
     if (err) return console.error(err);
 
+    // Hiển thị tin nhắn và thời gian
+    if (event.type === 'message') {
+      const timestamp = new Date(event.timestamp);
+      const timeString = timestamp.toLocaleTimeString('vi-VN');
+      const message = `${timeString} - ${event.senderID}: ${event.body}`;
+      console.log(message);  // Hiển thị tin nhắn lên console
+    }
+
     // Chào mừng thành viên mới
     if (event.type === 'event' && event.logMessageType === 'log:subscribe') {
       const newUserId = event.logMessageData.addedParticipants[0].userFbId;
@@ -80,4 +88,7 @@ function startBot(api) {
       }
     }
   });
+
+  // Hiển thị thông tin Admin
+  console.log("Admin Source: Đỗ Đăng Khoa");
 }
